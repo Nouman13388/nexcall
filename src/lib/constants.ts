@@ -69,37 +69,43 @@ export const services: Service[] = [
   {
     id: "inbound-calls",
     title: "Inbound Calls",
-    description: "Placeholder description for inbound customer support services.",
+    description:
+      "Round-the-clock multilingual support with first-call resolution targets and seamless omnichannel handling across phone, chat, and email — keeping your customers heard and satisfied at every touchpoint.",
     icon: "PhoneIncoming",
   },
   {
     id: "outbound-sales",
     title: "Outbound Sales",
-    description: "Placeholder description for outbound sales and conversion campaigns.",
+    description:
+      "Scripted, brand-aligned sales campaigns built for conversion. Our trained agents accelerate pipeline velocity, handle objections with confidence, and turn cold lists into closed revenue.",
     icon: "PhoneOutgoing",
   },
   {
     id: "lead-generation",
     title: "Lead Generation",
-    description: "Placeholder description for qualified lead generation workflows.",
+    description:
+      "Precision-targeted prospect outreach integrated directly with your CRM. We qualify leads, book appointments, and deliver sales-ready contacts so your team focuses on closing, not chasing.",
     icon: "UserRoundPlus",
   },
   {
     id: "telemarketing",
     title: "Telemarketing",
-    description: "Placeholder description for targeted telemarketing initiatives.",
+    description:
+      "Market surveys, product promotions, appointment booking, and structured data collection — executed by skilled agents who represent your brand professionally on every call.",
     icon: "Megaphone",
   },
   {
     id: "b2b-outreach",
     title: "B2B Outreach",
-    description: "Placeholder description for strategic B2B engagement services.",
+    description:
+      "Strategic engagement with decision-makers through account-based calling programs. We research, reach, and nurture the right contacts — generating qualified meetings that move deals forward.",
     icon: "Building2",
   },
   {
     id: "back-office-support",
     title: "Back Office Support",
-    description: "Placeholder description for scalable back office operations.",
+    description:
+      "Scalable back-office operations covering data entry, document processing, order management, and quality audits — freeing your core team to focus on growth while we handle the details.",
     icon: "BriefcaseBusiness",
   },
 ];

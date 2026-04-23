@@ -23,7 +23,7 @@ interface CountUpProps {
 
 function CountUp({ target, suffix, decimals }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
   const [display, setDisplay] = useState(decimals > 0 ? "0.0" : "0");
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
 
 interface Breadcrumb {
@@ -24,7 +25,11 @@ export default function PageHero({ title, subtitle, breadcrumbs }: PageHeroProps
             <ol className="flex items-center gap-2 text-sm text-white/50">
               {breadcrumbs.map((crumb, index) => (
                 <Fragment key={crumb.label}>
-                  {index > 0 && <li aria-hidden="true">/</li>}
+                  {index > 0 && (
+                    <li aria-hidden="true">
+                      <ChevronRight className="size-3.5 text-white/30" />
+                    </li>
+                  )}
                   <li>
                     {crumb.href ? (
                       <Link href={crumb.href} className="transition-colors hover:text-white/80">

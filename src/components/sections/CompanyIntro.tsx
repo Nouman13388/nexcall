@@ -1,3 +1,4 @@
+import { Building2 } from "lucide-react";
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
@@ -7,8 +8,8 @@ export default function CompanyIntro() {
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
         {/* Image placeholder */}
         <AnimatedDiv direction="left">
-          <div className="flex h-80 items-center justify-center rounded-2xl bg-dark/8 lg:h-96">
-            <span className="text-sm text-dark/35">About Image</span>
+          <div className="flex aspect-[4/3] w-full items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary/15">
+            <Building2 className="size-12 text-primary/30" />
           </div>
         </AnimatedDiv>
 

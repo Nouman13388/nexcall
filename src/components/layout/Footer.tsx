@@ -89,7 +89,7 @@ export default function Footer() {
 
       <div className="border-t border-light/10">
         <div className="mx-auto w-full max-w-7xl px-4 py-4 text-center text-sm text-light/65 sm:px-6 lg:px-8">
-          © 2025 Nexcall. All rights reserved.
+          © {new Date().getFullYear()} Nexcall. All rights reserved.
         </div>
       </div>
     </footer>
