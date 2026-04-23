@@ -29,7 +29,7 @@ function CountUp({ target, suffix, decimals }: CountUpProps) {
   useEffect(() => {
     if (!isInView) return;
 
-    const duration = 2000;
+    const duration = 1500;
     const start = Date.now();
     let rafId: number;
 

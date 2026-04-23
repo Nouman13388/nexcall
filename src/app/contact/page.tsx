@@ -6,7 +6,7 @@ import PageHero from "@/components/sections/PageHero";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Nexcall",
+  title: "Contact Us",
   description: "Get in touch with the Nexcall team. We respond within one business day.",
 };
 

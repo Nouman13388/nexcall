@@ -1,5 +1,3 @@
-"use client";
-
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import Button from "@/components/ui/Button";
 

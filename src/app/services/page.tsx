@@ -4,8 +4,9 @@ import PageHero from "@/components/sections/PageHero";
 import ServicesDetail from "@/components/sections/ServicesDetail";
 
 export const metadata: Metadata = {
-  title: "Our Services | Nexcall",
-  description: "Explore Nexcall's full range of call center solutions — inbound support, outbound sales, lead generation, and more.",
+  title: "Our Services",
+  description:
+    "Explore Nexcall's full range of call center solutions — inbound support, outbound sales, lead generation, and more.",
 };
 
 export default function ServicesPage() {

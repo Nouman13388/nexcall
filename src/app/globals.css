@@ -19,7 +19,16 @@
   --font-sans: var(--font-dm-sans);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--light);
   color: var(--dark);
+}
+
+/* Offset anchor targets so the sticky navbar doesn't cover the heading */
+section[id] {
+  scroll-margin-top: 5rem;
 }

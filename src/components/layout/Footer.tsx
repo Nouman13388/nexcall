@@ -1,14 +1,13 @@
 import Link from "next/link";
-// import { Facebook, Instagram, Linkedin, MapPin, Phone, Twitter } from "lucide-react";
+import { Briefcase, Camera, MapPin, Phone, Users, X as XIcon } from "lucide-react";
 import { navLinks, services, siteConfig } from "@/lib/constants";
-import { Phone } from "lucide-react";
 
-// const socialLinks = [
-//   { label: "Facebook", href: siteConfig.socialLinks.facebook, icon: Facebook },
-//   { label: "LinkedIn", href: siteConfig.socialLinks.linkedin, icon: Linkedin },
-//   { label: "Instagram", href: siteConfig.socialLinks.instagram, icon: Instagram },
-//   { label: "X", href: siteConfig.socialLinks.x, icon: Twitter },
-// ];
+const socialLinks = [
+  { label: "Facebook", href: siteConfig.socialLinks.facebook, icon: Users },
+  { label: "LinkedIn", href: siteConfig.socialLinks.linkedin, icon: Briefcase },
+  { label: "Instagram", href: siteConfig.socialLinks.instagram, icon: Camera },
+  { label: "X", href: siteConfig.socialLinks.x, icon: XIcon },
+];
 
 export default function Footer() {
   return (
@@ -20,8 +19,8 @@ export default function Footer() {
               {siteConfig.companyName}
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-6 text-light/75">
-              Placeholder description for Nexcall call center services and customer engagement
-              support solutions.
+              Placeholder description for Nexcall call center services and customer
+              engagement support solutions.
             </p>
           </div>
 
@@ -65,29 +64,25 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                {/* <MapPin className="mt-0.5 size-4 shrink-0 text-secondary" /> */}
+                <MapPin className="mt-0.5 size-4 shrink-0 text-secondary" />
                 <span>{siteConfig.contact.address}</span>
               </li>
             </ul>
 
-            {/* <div className="mt-5 flex items-center gap-3">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="rounded-full border border-light/20 p-2 text-light/80 transition-colors hover:border-secondary hover:text-secondary"
-                  >
-                    <Icon className="size-4" />
-                  </a>
-                );
-              })}
-            </div> */}
+            <div className="mt-5 flex items-center gap-3">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="rounded-full border border-light/20 p-2 text-light/80 transition-colors hover:border-secondary hover:text-secondary"
+                >
+                  <Icon className="size-4" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

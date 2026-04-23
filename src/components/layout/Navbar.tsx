@@ -6,13 +6,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { navLinks, siteConfig } from "@/lib/constants";
+import type { NavLink } from "@/lib/constants";
 
 function isActivePath(currentPath: string, href: string) {
-  if (href === "/") {
-    return currentPath === "/";
-  }
-
+  if (href === "/") return currentPath === "/";
+  if (href.startsWith("#")) return false;
   return currentPath.startsWith(href);
+}
+
+// On the home page, "Services" scrolls to the #services section instead of
+// navigating away. On all other pages it links to /services normally.
+function resolveHref(link: NavLink, pathname: string): string {
+  if (link.href === "/services" && pathname === "/") return "#services";
+  return link.href;
 }
 
 export default function Navbar() {
@@ -21,21 +27,14 @@ export default function Navbar() {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setHasScrolled(window.scrollY > 50);
-    };
-
+    const onScroll = () => setHasScrolled(window.scrollY > 50);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-
     return () => {
       document.body.style.overflow = "";
     };
@@ -54,20 +53,28 @@ export default function Navbar() {
           {siteConfig.companyName}
         </Link>
 
+        {/* Desktop nav */}
         <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => {
+            const href = resolveHref(link, pathname);
             const active = isActivePath(pathname, link.href);
-
             return (
-              <li key={link.href}>
+              <li key={link.href} className="relative">
                 <Link
-                  href={link.href}
+                  href={href}
                   className={`text-sm font-medium transition-colors ${
                     active ? "text-primary" : "text-dark/70 hover:text-primary"
                   }`}
                 >
                   {link.label}
                 </Link>
+                {active && (
+                  <motion.span
+                    layoutId="desktop-nav-indicator"
+                    className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full bg-secondary"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </li>
             );
           })}
@@ -82,17 +89,19 @@ export default function Navbar() {
           </Link>
         </div>
 
+        {/* Mobile menu toggle — min 44px tap target */}
         <button
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((prev) => !prev)}
-          className="inline-flex items-center justify-center rounded-md p-2 text-dark md:hidden"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-dark md:hidden"
         >
           {menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
         </button>
       </nav>
 
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {menuOpen ? (
           <motion.div
@@ -116,16 +125,18 @@ export default function Navbar() {
               exit={{ x: "100%" }}
               transition={{ duration: 0.28, ease: "easeInOut" }}
             >
-              <ul className="space-y-5">
+              <ul className="space-y-1">
                 {navLinks.map((link) => {
+                  const href = resolveHref(link, pathname);
                   const active = isActivePath(pathname, link.href);
-
                   return (
                     <li key={link.href}>
                       <Link
-                        href={link.href}
+                        href={href}
                         onClick={() => setMenuOpen(false)}
-                        className={`text-lg font-medium ${active ? "text-primary" : "text-dark/80"}`}
+                        className={`block py-3 text-lg font-medium ${
+                          active ? "text-primary" : "text-dark/80"
+                        }`}
                       >
                         {link.label}
                       </Link>

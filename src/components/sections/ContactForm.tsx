@@ -89,7 +89,7 @@ export default function ContactForm() {
 
       {status === "success" && (
         <div className="mt-6 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
-          Thank you! Your message has been sent. We'll be in touch shortly.
+          Thank you! Your message has been sent. We&rsquo;ll be in touch shortly.
         </div>
       )}
 

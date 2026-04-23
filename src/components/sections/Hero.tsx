@@ -38,7 +38,7 @@ export default function Hero() {
 
         {/* Headline */}
         <AnimatedDiv delay={0.15} duration={0.6}>
-          <h1 className="font-heading text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
             {siteConfig.companyName}
             <br />
             <span className="text-secondary">Your Growth, Our Mission</span>

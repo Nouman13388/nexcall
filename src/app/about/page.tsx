@@ -7,8 +7,9 @@ import MissionVision from "@/components/sections/MissionVision";
 import TeamSection from "@/components/sections/TeamSection";
 
 export const metadata: Metadata = {
-  title: "About Us | Nexcall",
-  description: "Learn about Nexcall — our mission, values, and the team behind our world-class call center solutions.",
+  title: "About Us",
+  description:
+    "Learn about Nexcall — our mission, values, and the team behind our world-class call center solutions.",
 };
 
 export default function AboutPage() {
