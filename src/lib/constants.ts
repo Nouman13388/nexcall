@@ -43,7 +43,7 @@ export interface CompanyValue {
 
 export const siteConfig: SiteConfig = {
   companyName: "Nexcall",
-  tagline: "Tagline placeholder for professional call center excellence.",
+  tagline: "The Experts You Can Count On",
   contact: {
     phone: "+00 000 000 0000",
     email: "hello@nexcall.example",

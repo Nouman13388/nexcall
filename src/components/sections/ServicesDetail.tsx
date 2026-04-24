@@ -63,7 +63,7 @@ export default function ServicesDetail() {
                   </p>
                   <Link
                     href="#"
-                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-secondary transition-colors hover:text-secondary/75"
+                    className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-primary/75"
                   >
                     Learn More
                     <ArrowRight className="size-4" />

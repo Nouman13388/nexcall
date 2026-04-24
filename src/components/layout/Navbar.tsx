@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { navLinks, siteConfig } from "@/lib/constants";
+import { navLinks } from "@/lib/constants";
 import type { NavLink } from "@/lib/constants";
 
 function isActivePath(currentPath: string, href: string) {
@@ -49,8 +50,15 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-heading text-2xl font-semibold text-primary">
-          {siteConfig.companyName}
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.svg"
+            alt="Nexcall"
+            width={44}
+            height={40}
+            className="h-8 w-auto sm:h-10"
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}

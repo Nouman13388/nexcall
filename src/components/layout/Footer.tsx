@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Briefcase, Camera, MapPin, Phone, Users, X as XIcon } from "lucide-react";
 import { navLinks, services, siteConfig } from "@/lib/constants";
@@ -15,8 +16,14 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="font-heading text-2xl font-semibold text-secondary">
-              {siteConfig.companyName}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.svg"
+                alt="Nexcall"
+                width={53}
+                height={48}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-6 text-light/75">
               Placeholder description for Nexcall call center services and customer
