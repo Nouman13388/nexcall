@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Briefcase, Camera, MapPin, Phone, Users, X as XIcon } from "lucide-react";
 import { navLinks, services, siteConfig } from "@/lib/constants";
 
@@ -16,15 +15,15 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="flex items-center">
+            <a href="#hero" className="flex items-center">
               <Image
                 src="/logo.svg"
                 alt="Nexcall"
                 width={53}
                 height={48}
-                className="h-12 w-auto"
+                className="h-10 w-auto"
               />
-            </Link>
+            </a>
             <p className="mt-4 max-w-xs text-sm leading-6 text-light/75">
               Placeholder description for Nexcall call center services and customer
               engagement support solutions.
@@ -36,9 +35,9 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-light/75">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="transition-colors hover:text-secondary">
+                  <a href={link.href} className="transition-colors hover:text-secondary">
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -48,7 +47,11 @@ export default function Footer() {
             <h3 className="font-heading text-lg font-semibold">Services</h3>
             <ul className="mt-4 space-y-3 text-sm text-light/75">
               {services.slice(0, 4).map((service) => (
-                <li key={service.id}>{service.title}</li>
+                <li key={service.id}>
+                  <a href="#services" className="transition-colors hover:text-secondary">
+                    {service.title}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>

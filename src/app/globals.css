@@ -30,5 +30,5 @@ body {
 
 /* Offset anchor targets so the sticky navbar doesn't cover the heading */
 section[id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 10rem;
 }

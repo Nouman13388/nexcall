@@ -1,7 +1,7 @@
-import CTABanner from "@/components/sections/CTABanner";
+import AboutStats from "@/components/sections/AboutStats";
 import Hero from "@/components/sections/Hero";
+import HomeContact from "@/components/sections/HomeContact";
 import ServiceGrid from "@/components/sections/ServiceGrid";
-import Stats from "@/components/sections/Stats";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 
 export default function Home() {
@@ -9,9 +9,9 @@ export default function Home() {
     <>
       <Hero />
       <ServiceGrid />
-      <Stats />
+      <AboutStats />
       <WhyChooseUs />
-      <CTABanner />
+      <HomeContact />
     </>
   );
 }

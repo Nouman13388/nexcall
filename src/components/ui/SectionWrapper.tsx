@@ -20,7 +20,7 @@ export default function SectionWrapper({
   bg = "transparent",
 }: SectionWrapperProps) {
   return (
-    <section id={id} className={`py-20 ${bgClasses[bg]} ${className}`}>
+    <section id={id} className={`py-10 lg:py-16 ${bgClasses[bg]} ${className}`}>
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">{children}</div>
     </section>
   );

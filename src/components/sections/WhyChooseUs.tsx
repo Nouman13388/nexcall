@@ -12,7 +12,7 @@ const valueIcons: LucideIcon[] = [Heart, Award, TrendingUp, Shield];
 
 export default function WhyChooseUs() {
   return (
-    <SectionWrapper bg="light">
+    <SectionWrapper bg="light" id="why-us">
       <AnimatedDiv>
         <SectionHeading
           title="Why Choose Nexcall"

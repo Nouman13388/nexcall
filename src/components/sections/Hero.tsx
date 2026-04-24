@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/constants";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-dark">
+    <section id="hero" className="relative flex min-h-[60vh] items-center justify-center overflow-hidden bg-dark lg:min-h-[70vh]">
       {/* Diagonal gradient overlay */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/50 via-dark to-dark" />
 

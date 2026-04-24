@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
-import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -35,7 +34,7 @@ export default function ServiceGrid() {
         />
       </AnimatedDiv>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid grid-cols-2 gap-6 lg:grid-cols-3">
         {services.map((service, index) => {
           const Icon = iconMap[service.icon];
           return (
@@ -49,14 +48,6 @@ export default function ServiceGrid() {
             </AnimatedDiv>
           );
         })}
-      </div>
-
-      <div className="mt-12 flex justify-center">
-        <AnimatedDiv delay={0.6}>
-          <Button variant="secondary" size="lg" href="/services">
-            View All Services
-          </Button>
-        </AnimatedDiv>
       </div>
     </SectionWrapper>
   );

@@ -1,34 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { navLinks } from "@/lib/constants";
-import type { NavLink } from "@/lib/constants";
 
-function isActivePath(currentPath: string, href: string) {
-  if (href === "/") return currentPath === "/";
-  if (href.startsWith("#")) return false;
-  return currentPath.startsWith(href);
-}
-
-// On the home page, "Services" scrolls to the #services section instead of
-// navigating away. On all other pages it links to /services normally.
-function resolveHref(link: NavLink, pathname: string): string {
-  if (link.href === "/services" && pathname === "/") return "#services";
-  return link.href;
-}
+const NAV = [
+  { label: "Home", id: "hero" },
+  { label: "Services", id: "services" },
+  { label: "About", id: "about" },
+  { label: "Contact", id: "contact" },
+];
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
+  const [activeId, setActiveId] = useState("hero");
 
   useEffect(() => {
-    const onScroll = () => setHasScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      const scrollMid = window.scrollY + window.innerHeight * 0.35;
+      let current = NAV[0].id;
+      for (const { id } of NAV) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollMid) current = id;
+      }
+      setActiveId(current);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -42,62 +39,55 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        hasScrolled
-          ? "bg-light/85 border-dark/10 border-b backdrop-blur-md"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-dark/10 bg-light/95 backdrop-blur-md">
+      <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="#hero" className="flex items-center">
           <Image
             src="/logo.svg"
             alt="Nexcall"
-            width={44}
-            height={40}
-            className="h-8 w-auto sm:h-10"
+            width={160}
+            height={145}
+            className="h-8 w-auto lg:h-10"
             priority
           />
-        </Link>
+        </a>
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => {
-            const href = resolveHref(link, pathname);
-            const active = isActivePath(pathname, link.href);
-            return (
-              <li key={link.href} className="relative">
-                <Link
-                  href={href}
-                  className={`text-sm font-medium transition-colors ${
-                    active ? "text-primary" : "text-dark/70 hover:text-primary"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-                {active && (
-                  <motion.span
-                    layoutId="desktop-nav-indicator"
-                    className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full bg-secondary"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </li>
-            );
-          })}
+          {NAV.map(({ label, id }) => (
+            <li key={id} className="relative">
+              <a
+                href={`#${id}`}
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm font-medium transition-colors ${
+                  activeId === id
+                    ? "text-dark"
+                    : "text-dark/60 hover:text-dark"
+                }`}
+              >
+                {label}
+              </a>
+              {activeId === id && (
+                <motion.span
+                  layoutId="desktop-nav-indicator"
+                  className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full bg-secondary"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+            </li>
+          ))}
         </ul>
 
         <div className="hidden md:block">
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-light transition-colors hover:bg-primary/90"
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center rounded-full bg-secondary px-5 py-2.5 text-sm font-semibold text-dark transition-colors hover:bg-secondary/90"
           >
             Get Started
-          </Link>
+          </a>
         </div>
 
-        {/* Mobile menu toggle — min 44px tap target */}
+        {/* Mobile menu toggle — color follows scroll state */}
         <button
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -109,7 +99,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile overlay */}
       <AnimatePresence>
         {menuOpen ? (
           <motion.div
@@ -122,7 +112,7 @@ export default function Navbar() {
             <button
               type="button"
               aria-label="Close menu overlay"
-              className="absolute inset-0 bg-dark/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-dark/70 backdrop-blur-sm"
               onClick={() => setMenuOpen(false)}
             />
 
@@ -134,32 +124,28 @@ export default function Navbar() {
               transition={{ duration: 0.28, ease: "easeInOut" }}
             >
               <ul className="space-y-1">
-                {navLinks.map((link) => {
-                  const href = resolveHref(link, pathname);
-                  const active = isActivePath(pathname, link.href);
-                  return (
-                    <li key={link.href}>
-                      <Link
-                        href={href}
-                        onClick={() => setMenuOpen(false)}
-                        className={`block py-3 text-lg font-medium ${
-                          active ? "text-primary" : "text-dark/80"
-                        }`}
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  );
-                })}
+                {NAV.map(({ label, id }) => (
+                  <li key={id}>
+                    <a
+                      href={`#${id}`}
+                      onClick={() => setMenuOpen(false)}
+                      className={`block py-3 text-lg font-medium ${
+                        activeId === id ? "text-dark" : "text-dark/60"
+                      }`}
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
 
-              <Link
-                href="/contact"
+              <a
+                href="#contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-10 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-light"
+                className="mt-10 inline-flex items-center justify-center rounded-full bg-secondary px-5 py-3 text-sm font-semibold text-dark"
               >
                 Get Started
-              </Link>
+              </a>
             </motion.aside>
           </motion.div>
         ) : null}
