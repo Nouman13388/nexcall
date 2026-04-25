@@ -1,20 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useContactModal } from "@/components/ui/ContactModal";
 
 const NAV = [
   { label: "Home", id: "hero" },
   { label: "Services", id: "services" },
   { label: "About", id: "about" },
-  { label: "Contact", id: "contact" },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState("hero");
+  const { openModal } = useContactModal();
 
   useEffect(() => {
     const onScroll = () => {
@@ -31,13 +30,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-dark/10 bg-light/95 backdrop-blur-md">
       <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
@@ -52,17 +44,14 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Desktop nav */}
+        {/* Desktop nav links — hidden on mobile */}
         <ul className="hidden items-center gap-8 md:flex">
           {NAV.map(({ label, id }) => (
             <li key={id} className="relative">
               <a
                 href={`#${id}`}
-                onClick={() => setMenuOpen(false)}
                 className={`text-sm font-medium transition-colors ${
-                  activeId === id
-                    ? "text-dark"
-                    : "text-dark/60 hover:text-dark"
+                  activeId === id ? "text-dark" : "text-dark/60 hover:text-dark"
                 }`}
               >
                 {label}
@@ -78,78 +67,15 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded-full bg-secondary px-5 py-2.5 text-sm font-semibold text-dark transition-colors hover:bg-secondary/90"
-          >
-            Get Started
-          </a>
-        </div>
-
-        {/* Mobile menu toggle — color follows scroll state */}
+        {/* CTA — always visible, primary mobile action */}
         <button
           type="button"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((prev) => !prev)}
-          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md text-dark md:hidden"
+          onClick={() => openModal()}
+          className="inline-flex items-center justify-center rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-dark transition-colors hover:bg-secondary/90 sm:px-5 sm:py-2.5"
         >
-          {menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+          Get Started
         </button>
       </nav>
-
-      {/* Mobile overlay */}
-      <AnimatePresence>
-        {menuOpen ? (
-          <motion.div
-            className="fixed inset-0 z-40 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <button
-              type="button"
-              aria-label="Close menu overlay"
-              className="absolute inset-0 bg-dark/70 backdrop-blur-sm"
-              onClick={() => setMenuOpen(false)}
-            />
-
-            <motion.aside
-              className="absolute right-0 top-0 flex h-full w-[82%] max-w-sm flex-col bg-light px-6 pb-8 pt-24"
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.28, ease: "easeInOut" }}
-            >
-              <ul className="space-y-1">
-                {NAV.map(({ label, id }) => (
-                  <li key={id}>
-                    <a
-                      href={`#${id}`}
-                      onClick={() => setMenuOpen(false)}
-                      className={`block py-3 text-lg font-medium ${
-                        activeId === id ? "text-dark" : "text-dark/60"
-                      }`}
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#contact"
-                onClick={() => setMenuOpen(false)}
-                className="mt-10 inline-flex items-center justify-center rounded-full bg-secondary px-5 py-3 text-sm font-semibold text-dark"
-              >
-                Get Started
-              </a>
-            </motion.aside>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
     </header>
   );
 }

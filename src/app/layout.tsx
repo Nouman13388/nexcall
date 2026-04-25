@@ -3,6 +3,7 @@ import { DM_Sans, Outfit } from "next/font/google";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import PageTransition from "@/components/ui/PageTransition";
+import { ContactModalProvider } from "@/components/ui/ContactModal";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -61,11 +62,13 @@ export default function RootLayout({
       className={`${outfit.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-light text-dark font-body">
-        <Navbar />
-        <main className="flex-1">
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Footer />
+        <ContactModalProvider>
+          <Navbar />
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+        </ContactModalProvider>
       </body>
     </html>
   );

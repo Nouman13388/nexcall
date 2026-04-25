@@ -1,6 +1,5 @@
 import AboutStats from "@/components/sections/AboutStats";
 import Hero from "@/components/sections/Hero";
-import HomeContact from "@/components/sections/HomeContact";
 import ServiceGrid from "@/components/sections/ServiceGrid";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 
@@ -11,7 +10,6 @@ export default function Home() {
       <ServiceGrid />
       <AboutStats />
       <WhyChooseUs />
-      <HomeContact />
     </>
   );
 }

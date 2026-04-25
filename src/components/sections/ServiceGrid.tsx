@@ -13,6 +13,7 @@ import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import Card from "@/components/ui/Card";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { useContactModal } from "@/components/ui/ContactModal";
 import { services } from "@/lib/constants";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -25,6 +26,8 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function ServiceGrid() {
+  const { openModal } = useContactModal();
+
   return (
     <SectionWrapper bg="light" id="services">
       <AnimatedDiv>
@@ -42,8 +45,8 @@ export default function ServiceGrid() {
               <Card
                 icon={Icon}
                 title={service.title}
-                description={service.description}
                 className="h-full"
+                onClick={() => openModal(service.title)}
               />
             </AnimatedDiv>
           );

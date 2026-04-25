@@ -3,9 +3,12 @@
 import { motion } from "framer-motion";
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import Button from "@/components/ui/Button";
+import { useContactModal } from "@/components/ui/ContactModal";
 import { siteConfig } from "@/lib/constants";
 
 export default function Hero() {
+  const { openModal } = useContactModal();
+
   return (
     <section id="hero" className="relative flex min-h-[60vh] items-center justify-center overflow-hidden bg-dark lg:min-h-[70vh]">
       {/* Diagonal gradient overlay */}
@@ -59,8 +62,8 @@ export default function Hero() {
             <Button
               variant="primary"
               size="lg"
-              href="/contact"
               className="!bg-secondary !text-dark hover:!bg-secondary/90"
+              onClick={() => openModal()}
             >
               Get Started
             </Button>
