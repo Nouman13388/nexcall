@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://nexcall.com";
+const BASE_URL = "https://www.nexcalltech.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

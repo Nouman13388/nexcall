@@ -29,11 +29,11 @@ export const metadata: Metadata = {
     title: "Nexcall | Professional Call Center Solutions",
     description:
       "Nexcall delivers world-class inbound and outbound call center services that drive conversions, build loyalty, and accelerate your business — 24/7, at any scale.",
-    url: "https://nexcall.com",
+    url: "https://www.nexcalltech.com",
     siteName: "Nexcall",
     images: [
       {
-        url: "https://nexcall.com/og-image.png",
+        url: "https://www.nexcalltech.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Nexcall — Professional Call Center Solutions",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "Nexcall | Professional Call Center Solutions",
     description:
       "Nexcall delivers world-class inbound and outbound call center services that drive conversions, build loyalty, and accelerate your business — 24/7, at any scale.",
-    images: ["https://nexcall.com/og-image.png"],
+    images: ["https://www.nexcalltech.com/og-image.png"],
   },
 };
 

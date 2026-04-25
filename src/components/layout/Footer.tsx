@@ -25,8 +25,8 @@ export default function Footer() {
               />
             </a>
             <p className="mt-4 max-w-xs text-sm leading-6 text-light/75">
-              Placeholder description for Nexcall call center services and customer
-              engagement support solutions.
+              Professional call center solutions delivering inbound, outbound, and
+              back-office services for businesses worldwide.
             </p>
           </div>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
 import { Building2 } from "lucide-react";
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import SectionWrapper from "@/components/ui/SectionWrapper";
@@ -19,28 +18,51 @@ function parseStatValue(raw: string): { num: number; suffix: string; decimals: n
 
 function CountUp({ target, suffix, decimals }: { target: number; suffix: string; decimals: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const rafRef = useRef<number>(0);
+  const started = useRef(false);
   const [display, setDisplay] = useState(decimals > 0 ? "0.0" : "0");
 
   useEffect(() => {
-    if (!isInView) return;
-    const duration = 1500;
-    const start = Date.now();
-    let rafId: number;
-    const tick = () => {
-      const elapsed = Date.now() - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(
-        decimals > 0
-          ? (eased * target).toFixed(decimals)
-          : String(Math.round(eased * target)),
-      );
-      if (progress < 1) rafId = requestAnimationFrame(tick);
+    const el = ref.current;
+    if (!el) return;
+
+    const animate = () => {
+      const duration = 1500;
+      const startTime = Date.now();
+
+      const tick = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setDisplay(
+          decimals > 0
+            ? (eased * target).toFixed(decimals)
+            : String(Math.round(eased * target)),
+        );
+        if (progress < 1) rafRef.current = requestAnimationFrame(tick);
+      };
+
+      rafRef.current = requestAnimationFrame(tick);
     };
-    rafId = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafId);
-  }, [isInView, target, decimals]);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          animate();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, [target, decimals]);
 
   return (
     <span ref={ref}>

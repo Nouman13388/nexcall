@@ -119,18 +119,22 @@ export const stats: Stat[] = [
 export const values: CompanyValue[] = [
   {
     title: "Client First",
-    description: "Placeholder text describing customer-centric service delivery.",
+    description:
+      "Every decision we make starts with your customers. We tailor scripts, workflows, and KPIs to your brand voice.",
   },
   {
     title: "Operational Excellence",
-    description: "Placeholder text describing reliable and measurable performance.",
+    description:
+      "ISO-compliant processes, real-time monitoring, and 99.9% uptime SLAs keep your operations running smoothly.",
   },
   {
     title: "Data-Driven Decisions",
-    description: "Placeholder text describing analytics-backed optimization.",
+    description:
+      "Live dashboards, call analytics, and performance reporting give you full visibility into every campaign.",
   },
   {
     title: "Trusted Partnership",
-    description: "Placeholder text describing long-term collaborative growth.",
+    description:
+      "We grow with you — flexible scaling, dedicated account managers, and transparent pricing with no hidden fees.",
   },
 ];

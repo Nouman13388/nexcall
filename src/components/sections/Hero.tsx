@@ -70,7 +70,7 @@ export default function Hero() {
             <Button
               variant="outline"
               size="lg"
-              href="/services"
+              href="#services"
               className="!border-white/30 !text-white hover:!bg-white/10"
             >
               Our Services
