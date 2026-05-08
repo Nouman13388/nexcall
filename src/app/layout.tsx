@@ -19,6 +19,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.nexcalltech.com"),
   title: {
     template: "%s | Nexcall",
     default: "Nexcall | Professional Call Center Solutions",

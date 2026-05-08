@@ -1,4 +1,4 @@
-import { Briefcase, Camera, Mail, MapPin, MessageCircle, Phone, Users, X as XIcon } from "lucide-react";
+import { Briefcase, Camera, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/constants";
@@ -31,16 +31,15 @@ const contactDetails: ContactDetail[] = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: siteConfig.contact.whatsapp,
-    href: `https://wa.me/${siteConfig.contact.whatsapp.replace(/\D/g, "")}`,
+    value: "Chat on WhatsApp",
+    href: siteConfig.contact.whatsapp,
   },
 ];
 
 const socialLinks = [
-  { icon: Users, href: siteConfig.socialLinks.facebook, label: "Facebook" },
-  { icon: Briefcase, href: siteConfig.socialLinks.linkedin, label: "LinkedIn" },
+  { icon: MessageCircle, href: siteConfig.socialLinks.whatsapp, label: "WhatsApp" },
   { icon: Camera, href: siteConfig.socialLinks.instagram, label: "Instagram" },
-  { icon: XIcon, href: siteConfig.socialLinks.x, label: "X" },
+  { icon: Briefcase, href: siteConfig.socialLinks.linkedin, label: "LinkedIn" },
 ];
 
 export default function ContactInfo() {

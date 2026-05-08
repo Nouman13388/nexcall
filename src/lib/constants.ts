@@ -6,10 +6,9 @@ export interface SiteContactInfo {
 }
 
 export interface SiteSocialLinks {
-  facebook: string;
-  linkedin: string;
+  whatsapp: string;
   instagram: string;
-  x: string;
+  linkedin: string;
 }
 
 export interface SiteConfig {
@@ -45,16 +44,15 @@ export const siteConfig: SiteConfig = {
   companyName: "Nexcall",
   tagline: "The Experts You Can Count On",
   contact: {
-    phone: "+00 000 000 0000",
-    email: "hello@nexcall.example",
-    address: "Address placeholder, City, Country",
-    whatsapp: "+00 000 000 0000",
+    phone: "+1 (313) 761-1078",
+    email: "HR@nexcalltech.com",
+    address: "Valencia Tower, Valencia Town, Lahore",
+    whatsapp: "https://wa.me/message/Z4LJIDXPVCRMH1",
   },
   socialLinks: {
-    facebook: "https://facebook.com/placeholder",
-    linkedin: "https://linkedin.com/company/placeholder",
-    instagram: "https://instagram.com/placeholder",
-    x: "https://x.com/placeholder",
+    whatsapp: "https://wa.me/message/Z4LJIDXPVCRMH1",
+    instagram: "https://www.instagram.com/nex.call/",
+    linkedin: "https://www.linkedin.com/in/hassan-ilyas-nexcall/",
   },
 };
 

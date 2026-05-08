@@ -1,12 +1,11 @@
 import Image from "next/image";
-import { Briefcase, Camera, MapPin, Phone, Users, X as XIcon } from "lucide-react";
+import { Briefcase, Camera, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { navLinks, services, siteConfig } from "@/lib/constants";
 
 const socialLinks = [
-  { label: "Facebook", href: siteConfig.socialLinks.facebook, icon: Users },
-  { label: "LinkedIn", href: siteConfig.socialLinks.linkedin, icon: Briefcase },
+  { label: "WhatsApp", href: siteConfig.socialLinks.whatsapp, icon: MessageCircle },
   { label: "Instagram", href: siteConfig.socialLinks.instagram, icon: Camera },
-  { label: "X", href: siteConfig.socialLinks.x, icon: XIcon },
+  { label: "LinkedIn", href: siteConfig.socialLinks.linkedin, icon: Briefcase },
 ];
 
 export default function Footer() {
@@ -65,7 +64,8 @@ export default function Footer() {
                   {siteConfig.contact.phone}
                 </a>
               </li>
-              <li>
+              <li className="flex items-start gap-2">
+                <Mail className="mt-0.5 size-4 shrink-0 text-secondary" />
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
                   className="transition-colors hover:text-secondary"
