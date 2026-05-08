@@ -14,7 +14,7 @@ interface ButtonProps extends Omit<HTMLMotionProps<"button">, "children"> {
   children: ReactNode;
 }
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 const sizeClasses = {
   sm: "px-4 py-1.5 text-sm",

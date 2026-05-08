@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import Button from "@/components/ui/Button";
@@ -28,6 +29,16 @@ export default function Hero() {
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
 
+      {/* Logo watermark */}
+      <Image
+        src="/logo.svg"
+        alt=""
+        aria-hidden="true"
+        width={500}
+        height={454}
+        className="pointer-events-none absolute left-1/2 top-1/2 w-[250px] -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.07] blur-md sm:w-[400px] lg:w-[500px]"
+      />
+
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         {/* Badge */}
@@ -44,7 +55,7 @@ export default function Hero() {
           <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
             {siteConfig.companyName}
             <br />
-            <span className="text-secondary">Your Growth, Our Mission</span>
+            <span className="text-secondary">{siteConfig.tagline}</span>
           </h1>
         </AnimatedDiv>
 
