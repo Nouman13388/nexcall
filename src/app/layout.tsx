@@ -52,6 +52,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Flip back to false to bring the site back online.
+const MAINTENANCE_MODE = true;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,13 +66,26 @@ export default function RootLayout({
       className={`${outfit.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-light text-dark font-body">
-        <ContactModalProvider>
-          <Navbar />
-          <main className="flex-1">
-            <PageTransition>{children}</PageTransition>
+        {MAINTENANCE_MODE ? (
+          <main className="flex-1 flex items-center justify-center text-center px-6 py-20">
+            <div>
+              <h1 className="text-3xl font-bold mb-2">
+                We&rsquo;ll be back shortly
+              </h1>
+              <p className="text-dark/60">
+                Nexcall is temporarily down for maintenance.
+              </p>
+            </div>
           </main>
-          <Footer />
-        </ContactModalProvider>
+        ) : (
+          <ContactModalProvider>
+            <Navbar />
+            <main className="flex-1">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <Footer />
+          </ContactModalProvider>
+        )}
       </body>
     </html>
   );
