@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Building2 } from "lucide-react";
+import Image from "next/image";
 import AnimatedDiv from "@/components/ui/AnimatedDiv";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { stats } from "@/lib/constants";
@@ -108,10 +108,16 @@ export default function AboutStats() {
           </div>
         </AnimatedDiv>
 
-        {/* Right: gradient image placeholder */}
+        {/* Right: brand mark */}
         <AnimatedDiv direction="right" delay={0.12}>
           <div className="flex aspect-[4/3] w-full items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary/15">
-            <Building2 className="size-12 text-primary/30" />
+            <Image
+              src="/logo.svg"
+              alt="Nexcall"
+              width={2048}
+              height={1858}
+              className="h-auto w-40 rounded-xl shadow-xl sm:w-48"
+            />
           </div>
         </AnimatedDiv>
       </div>
